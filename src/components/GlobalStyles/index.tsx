@@ -21,6 +21,16 @@ const GlobalStyles = createGlobalStyle`
   *, *:before, *:after {
     box-sizing: inherit;
   }
+  
+  .masonry-grid {
+    display: flex;
+    margin-left: -10px;
+    width: auto;
+  }
+  .masonry-grid_column {
+    padding-left: 10px;
+    background-clip: padding-box;
+  }
 `
 
 export default GlobalStyles

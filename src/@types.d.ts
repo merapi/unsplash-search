@@ -7,6 +7,8 @@ export interface TUser {
 export interface TPhoto {
   urls: {
     thumb: string
+    small: string
+    regular: string
   }
   id: string
   alt_description: string

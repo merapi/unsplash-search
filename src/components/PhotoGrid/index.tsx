@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components";
 import { TPhoto, TUser } from "@types";
+import Masonry from "react-masonry-css"
 
 interface Props {
   photos: TPhoto[]
@@ -15,9 +16,13 @@ const BarePhotoGrid = ({ photos, user, className }: Props) => {
     return (
       <div>
         <Info>User {user.username} has {user.total_photos} photo{user.total_photos === 1 ? `` : `s`}</Info>
-        <div>{photos.map(photo => {
-          return <Img key={photo.id} alt={photo.alt_description} src={photo.urls.thumb} />
-        })}</div>
+        <Masonry
+          breakpointCols={3}
+          className="masonry-grid"
+          columnClassName="masonry-grid_column"
+        >{photos.map(photo => {
+          return <Img key={photo.id} alt={photo.alt_description} src={photo.urls.small} />
+        })}</Masonry>
       </div>
     )
   }
@@ -30,13 +35,14 @@ const BarePhotoGrid = ({ photos, user, className }: Props) => {
 }
 
 const PhotoGrid = styled(BarePhotoGrid)`
-  flex: 3;
-  padding: 0 0 0 5px;
+  flex-grow: 1;
+  padding: 0 0 0 20px;
 `
 
 const Img = styled.img`
+  width: 100%;
   border-radius: 5px;
-  margin: 0 0 5px 5px;
+  margin-bottom: 5px;
 `
 
 const Info = styled.div`

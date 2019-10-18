@@ -1,5 +1,6 @@
 export interface TUser {
   username: string
+  id: string
 }
 
 export interface TPhoto {

@@ -11,6 +11,7 @@ import useDebounce from "hooks/useDebounce";
 const App: React.FC = () => {
   const [query, setQuery] = useState('')
   const [list, setList] = useState<TUser[]>([])
+  const [selectedUser, setSelectedUser] = useState<TUser | null>(null)
   const [photos, setPhotos] = useState<TPhoto[]>([])
   const debouncedQuery = useDebounce(query, 350);
 
@@ -33,15 +34,15 @@ const App: React.FC = () => {
 
   const onUserClick = async (user: TUser) => {
     const userPhotos = await Api.getUserPhotos(user)
-    console.log(`userPhotos`, userPhotos)
     setPhotos(userPhotos)
+    setSelectedUser(user)
   }
 
   return (
     <Container>
       <GlobalStyles />
       <Row>
-        <UserList query={query} list={list} onQueryChange={onQueryChange} onUserClick={onUserClick} />
+        <UserList query={query} list={list} selectedUser={selectedUser} onQueryChange={onQueryChange} onUserClick={onUserClick} />
         <PhotoGrid photos={photos} />
       </Row>
       <Footer />

@@ -5,12 +5,13 @@ import { TUser } from "@types"
 interface Props {
   query: string
   list: TUser[]
+  selectedUser: TUser | null
   onQueryChange: (query: string) => void
   onUserClick: (user: TUser) => void
   className?: string
 }
 
-const BareUserList = ({ query, list, onQueryChange, onUserClick, className }: Props) => {
+const BareUserList = ({ query, list, selectedUser, onQueryChange, onUserClick, className }: Props) => {
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value
     onQueryChange(value)
@@ -20,11 +21,19 @@ const BareUserList = ({ query, list, onQueryChange, onUserClick, className }: Pr
     onUserClick(user)
   }
 
+  console.log(`selectedUser`, selectedUser, list)
+
   return (
     <div className={className}>
       <Input placeholder={"Search for user..."} value={query} onChange={onChange} type="text" />
       <List>
-        {list.map(user => <User key={user.username} onClick={onClick(user)}>{user.username}</User>)}
+        {list.map(user => (
+          <User
+            selectedUser={selectedUser !== null && user.id === selectedUser.id}
+            key={user.username}
+            onClick={onClick(user)}
+          >{user.username}</User>
+        ))}
       </List>
     </div>
   )
@@ -38,9 +47,10 @@ const List = styled.div`
   margin: 10px 0 0 11px;
 `
 
-const User = styled.div`
+const User = styled.div<{ selectedUser: boolean }>`
   margin-bottom: 7px;
   cursor: pointer;
+  ${({ selectedUser }) => selectedUser ? `text-decoration: underline;` : ``}
 `
 
 const Input = styled.input`

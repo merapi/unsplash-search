@@ -1,3 +1,5 @@
+![Unsplash search user](https://s3.gifyu.com/images/unsplash.gif)
+
 ### Install & run the project:
 
 1. `yarn` or `npm i`

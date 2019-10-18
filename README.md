@@ -13,3 +13,4 @@ Simple app for Unsplash user searching and displaying their photos
 Todo:
 - Click to open photo in a new tab
 - Infinite scrolling?
+- Better responsive/mobile behaviours (photos resolutions, number of columns)

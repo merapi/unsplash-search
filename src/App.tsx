@@ -6,21 +6,26 @@ import UserList from 'components/UserList'
 import Footer from 'components/Footer'
 import { TUser, TPhoto } from "@types";
 import Api from "Api"
-
+import useDebounce from "hooks/useDebounce";
 
 const App: React.FC = () => {
   const [query, setQuery] = useState('')
   const [list, setList] = useState<TUser[]>([])
   const [photos, setPhotos] = useState<TPhoto[]>([])
+  const debouncedQuery = useDebounce(query, 350);
 
   useEffect(() => {
     async function searchUsers() {
-      const users = await Api.searchUsers(query)
+      const users = await Api.searchUsers(debouncedQuery)
       console.log(`users`, users)
       setList(users)
     }
-    searchUsers()
-  }, [query])
+    if (debouncedQuery) {
+      searchUsers()
+    } else {
+      setList([])
+    }
+  }, [debouncedQuery])
 
   const onQueryChange = (query: string) => {
     setQuery(query)

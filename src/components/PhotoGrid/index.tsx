@@ -11,7 +11,7 @@ const BarePhotoGrid = ({ photos, className }: Props) => {
   return (
     <div className={className}>
       {photos.map(photo => {
-        return <img src={photo.urls.thumb} />
+        return <img key={photo.id} alt={photo.alt_description} src={photo.urls.thumb} />
       })}
     </div>
   )

@@ -1,13 +1,19 @@
 import React from "react"
 import styled from "styled-components";
+import { TPhoto } from "@types";
 
 interface Props {
+  photos: TPhoto[]
   className?: string
 }
 
-const BarePhotoGrid = ({ className }: Props) => {
+const BarePhotoGrid = ({ photos, className }: Props) => {
   return (
-    <div className={className}>PhotoGrid</div>
+    <div className={className}>
+      {photos.map(photo => {
+        return <img src={photo.urls.thumb} />
+      })}
+    </div>
   )
 }
 

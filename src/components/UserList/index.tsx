@@ -24,7 +24,7 @@ const BareUserList = ({ query, list, onQueryChange, onUserClick, className }: Pr
     <div className={className}>
       <input value={query} onChange={onChange} type="text" />
       <List>
-        {list.map(user => <User onClick={onClick(user)}>{user.username}</User>)}
+        {list.map(user => <User key={user.username} onClick={onClick(user)}>{user.username}</User>)}
       </List>
     </div>
   )

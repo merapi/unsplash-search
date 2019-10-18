@@ -22,7 +22,7 @@ const BareUserList = ({ query, list, onQueryChange, onUserClick, className }: Pr
 
   return (
     <div className={className}>
-      <input value={query} onChange={onChange} type="text" />
+      <Input placeholder={"Search for user..."} value={query} onChange={onChange} type="text" />
       <List>
         {list.map(user => <User key={user.username} onClick={onClick(user)}>{user.username}</User>)}
       </List>
@@ -32,15 +32,21 @@ const BareUserList = ({ query, list, onQueryChange, onUserClick, className }: Pr
 
 const UserList = styled(BareUserList)`
   flex: 1;
-  background: green;
 `
 
 const List = styled.div`
-  
+  margin: 10px 0 0 11px;
 `
 
 const User = styled.div`
-  
+  margin-bottom: 7px;
+  cursor: pointer;
+`
+
+const Input = styled.input`
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 5px;
 `
 
 export default UserList

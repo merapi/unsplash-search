@@ -12,6 +12,15 @@ const GlobalStyles = createGlobalStyle`
     background: #282c34;
     color: #efefef;
   }
+  html, body, #root {
+    height: 100%;
+  }
+  html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
 `
 
 export default GlobalStyles

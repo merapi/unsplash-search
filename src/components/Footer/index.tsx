@@ -7,13 +7,15 @@ interface Props {
 
 const BareFooter = ({ className }: Props) => {
   return (
-    <div className={className}>Footer</div>
+    <div className={className}>© Copyright 2019 merapi</div>
   )
 }
 
 const Footer = styled(BareFooter)`
-  flex: 1;
-  background: #444;
+  flex-shrink: 0;
+  margin-top: 20px;
+  text-align: right;
+  padding-bottom: 20px;
 `
 
 export default Footer

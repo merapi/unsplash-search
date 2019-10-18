@@ -51,11 +51,14 @@ const App: React.FC = () => {
 
 const Row = styled.div`
   display: flex;
+  flex: 1 0 auto;
 `
 
 const Container = styled.div`
-  background: gray;
-  padding: 5px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 0 20px;
 `
 
 export default App;

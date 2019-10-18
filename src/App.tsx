@@ -1,25 +1,34 @@
-import React from 'react';
-import Unsplash, { toJson } from "unsplash-js"
+import React, { useEffect, useState } from 'react';
 import styled from "styled-components"
 import GlobalStyles from 'components/GlobalStyles'
 import PhotoGrid from 'components/PhotoGrid'
 import UserList from 'components/UserList'
 import Footer from 'components/Footer'
+import { TUser } from "@types";
+import Api from "Api"
 
-const unsplash = new Unsplash({ accessKey: "5f64fd0ea20fabe32c6e599342b8665f66c86e43630b75f3ca477f0d596279ff" })
-
-unsplash.search.users("stevexxxxxxxxx", 1, 20)
-  .then(toJson)
-  .then((json: object) => {
-    console.log(json)
-  });
 
 const App: React.FC = () => {
+  const [query, setQuery] = useState('')
+  const [list, setList] = useState<TUser[]>([])
+
+  useEffect(() => {
+    async function searchUsers() {
+      const users = await Api.searchUsers(query)
+      setList(users)
+    }
+    searchUsers()
+  }, [query])
+
+  const onQueryChange = (query: string) => {
+    setQuery(query)
+  }
+
   return (
     <Container>
       <GlobalStyles />
       <Row>
-        <UserList />
+        <UserList query={query} list={list} onQueryChange={onQueryChange} />
         <PhotoGrid />
       </Row>
       <Footer />

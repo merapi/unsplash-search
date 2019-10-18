@@ -5,6 +5,7 @@ const GlobalStyles = createGlobalStyle`
   
   * {
     font-family: Inconsolata;
+    font-size: 20px;
   }
   body {
     margin: 0;

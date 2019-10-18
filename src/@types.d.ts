@@ -1,1 +1,3 @@
-declare module 'unsplash-js';
+export interface TUser {
+
+}

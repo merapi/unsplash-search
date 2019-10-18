@@ -17,3 +17,4 @@ Todo:
 - Loading... messages
 - Infinite scrolling?
 - Better responsive/mobile behaviours (photos resolutions, number of columns)
+- Complex state management? (We probably don't need redux here...)

@@ -24,11 +24,14 @@ const App: React.FC = () => {
     setQuery(query)
   }
 
+  const onUserClick = (user: TUser) => {
+  }
+
   return (
     <Container>
       <GlobalStyles />
       <Row>
-        <UserList query={query} list={list} onQueryChange={onQueryChange} />
+        <UserList query={query} list={list} onQueryChange={onQueryChange} onUserClick={onUserClick} />
         <PhotoGrid />
       </Row>
       <Footer />

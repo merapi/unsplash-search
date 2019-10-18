@@ -1,6 +1,7 @@
 export interface TUser {
   username: string
   id: string
+  total_photos: number
 }
 
 export interface TPhoto {

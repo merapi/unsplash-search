@@ -10,7 +10,7 @@ import useDebounce from "hooks/useDebounce";
 
 const App: React.FC = () => {
   const [query, setQuery] = useState('')
-  const [list, setList] = useState<TUser[]>([])
+  const [list, setList] = useState<TUser[] | null>(null)
   const [selectedUser, setSelectedUser] = useState<TUser | null>(null)
   const [photos, setPhotos] = useState<TPhoto[]>([])
   const debouncedQuery = useDebounce(query, 350);
@@ -18,13 +18,12 @@ const App: React.FC = () => {
   useEffect(() => {
     async function searchUsers() {
       const users = await Api.searchUsers(debouncedQuery)
-      console.log(`users`, users)
       setList(users)
     }
     if (debouncedQuery) {
       searchUsers()
     } else {
-      setList([])
+      setList(null)
     }
   }, [debouncedQuery])
 
@@ -43,7 +42,7 @@ const App: React.FC = () => {
       <GlobalStyles />
       <Row>
         <UserList query={query} list={list} selectedUser={selectedUser} onQueryChange={onQueryChange} onUserClick={onUserClick} />
-        <PhotoGrid photos={photos} />
+        <PhotoGrid user={selectedUser} photos={photos} />
       </Row>
       <Footer />
     </Container>
